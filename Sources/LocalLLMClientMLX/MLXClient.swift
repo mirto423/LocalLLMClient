@@ -78,7 +78,7 @@ public final actor MLXClient: LLMClient {
         
         let required = parameters["required"] as? [String] ?? []
         
-        return properties.compactMap { key, value in
+        return properties.compactMap { (key: String, value: [String: any Sendable]) -> ToolParameter? in
             guard let type = value["type"] as? String,
                   let description = value["description"] as? String else {
                 return nil
